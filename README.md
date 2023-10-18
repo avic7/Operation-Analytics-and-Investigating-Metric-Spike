@@ -4,13 +4,13 @@ The project operation analytics and investigating metric spike is analysis done 
 
 Case Study 1: Job Data Analysis
 We will be working with a table named job_data with the following columns:
-job_id: Unique identifier of jobs
-actor_id: Unique identifier of actor
-event: The type of event (decision/skip/transfer).
-language: The Language of the content
-time_spent: Time spent to review the job in seconds.
-org: The Organization of the actor
-ds: The date in the format yyyy/mm/dd (stored as text).
+a)job_id: Unique identifier of jobs
+b)actor_id: Unique identifier of actor
+c)event: The type of event (decision/skip/transfer).
+d)language: The Language of the content
+e)time_spent: Time spent to review the job in seconds.
+f)org: The Organization of the actor
+g)ds: The date in the format yyyy/mm/dd (stored as text).
 
 Tasks:
 1.Jobs Reviewed Over Time:
@@ -28,9 +28,9 @@ Task: Write an SQL query to display duplicate rows from the job_data table.
 
 Case Study 2: Investigating Metric Spike
 You will be working with three tables:
-users: Contains one row per user, with descriptive information about that user’s account.
-events: Contains one row per event, where an event is an action that a user has taken (e.g., login, messaging, search).
-email_events: Contains events specific to the sending of emails.
+a)users: Contains one row per user, with descriptive information about that user’s account.
+b)events: Contains one row per event, where an event is an action that a user has taken (e.g., login, messaging, search).
+c)email_events: Contains events specific to the sending of emails.
 
 Task
 1.Weekly User Engagement:
