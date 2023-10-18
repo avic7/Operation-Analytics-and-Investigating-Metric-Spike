@@ -68,7 +68,7 @@ Requirements
 3. Access to the provided dataset.
 4. A basic understanding of SQL query syntax and functions.
 
-Contributing
+Contributing:
 Contributions to this project are welcome! If you find issues, have suggestions, or want to add new analytical tasks, feel free to submit pull requests.
 
 This project intends to deliver significant insights that help drive data-driven decision-making and enhance many elements of the organisation by doing in-depth analyses and investigations on operational indicators using SQL.
