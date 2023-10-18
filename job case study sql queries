@@ -1,0 +1,31 @@
+#1. Number of jobs reviewed
+select 
+ ds,
+ round(count(job_id)/sum((time_spent))*3600,4) as jobs
+from 
+ job_data
+where ds between '2020-11-01' and '2020-11-30'
+group by ds;
+
+#2.Throughput 
+select 
+ round(Count(e_vent)/Sum((time_spent)),4) as throughput
+from 
+ job_data
+group by e_vent
+
+#3. Percentage share of each language
+select 
+ language_name as languages,
+ Round(((count(language_name)/(select count(*) from job_data))*100),1) percentage
+ from 
+  job_data
+group by language_name;
+
+#4. Duplicate rows
+select 
+ actor_id,
+ count(*) as Duplicates
+from 
+ job_data 
+group by actor_id;
