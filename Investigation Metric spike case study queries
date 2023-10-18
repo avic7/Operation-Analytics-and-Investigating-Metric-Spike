@@ -1,0 +1,76 @@
+#1.Weekly User Engagement
+select 
+ extract(year from occured_at) as years,
+ extract(week from occured_at) as week_num,
+ device,
+ count(distinct user_id)users_retained
+from
+ event_emails
+where event_type = 'engagement'
+group by 1,2,3
+order by 1,2,3;
+
+#2. calc the user growth over time for product
+select week_num, year_num,
+sum(active_users) over (order by week_num, year_num 
+rows between unbounded preceding and current row) as cumulative_sum
+from (
+select extract(week from activated_at) as week_num,
+extract(year from activated_at) as year_num,
+count(distinct user_id) as active_users from users_table
+where state= "active"
+group by year_num, week_num
+order by year_num, week_num) as alias;
+
+#3.Email engagement analysis 
+select 
+ week_num,
+ round((reengagement_email/total*100),1) as reengagement_rate,
+ round((email_clickthrough/total*100),1) as reengagement_rate,
+ round((email_open/total*100),1) as reengagement_rate,
+ round((weekly_digest/total*100),1) as reengagement_rate
+from(
+ select 
+ extract(week from occured_at) as week_num,
+ count(case when action_taken='sent_reengaement_mail' then user_id else null end) as reengagement_mail,
+ count(case when action_taken='email_clickthrough' then user_id else null end) as email_clickthrough,
+ count(case when action_taken='email_open' then user_id else null end) as email_open,
+ count(case when action_taken='weekly_digest' then user_id else null end) as weekly_digest,
+ count(user_id) as total
+from 
+ event_emails
+group by 1)
+sub group by 1
+order by 1;
+
+#4.Engagement per device weekly
+select 
+ extract(week from occured_at) as week_num,
+ count(distinct case when device IN ('dell Inspiron notebook') then user_id else null end) AS 'Dell Inspiron Notebook',
+ count(distinct case when device IN ('dell Inspiron desktop') then user_id else null end) AS 'Dell Inspiron Desktop',
+ count(distinct case when device IN ('hp pavillion desktop') then user_id else null end) AS 'HP Pavillion Desktop',
+ count(distinct case when device IN ('kindle fire') then user_id else null end) AS 'kindle fire',
+ count(distinct case when device IN ('iphone 4s') then user_id else null end) AS 'Iphone 4s',
+ count(distinct case when device IN ('iphone 5') then user_id else null end) AS 'Iphone 5',
+ count(distinct case when device IN ('ipad mini') then user_id else null end) AS 'Ipad Mini',
+ count(distinct case when device IN ('ipad air') then user_id else null end) AS 'Ipad Air',
+ count(distinct case when device IN ('macbook pro') then user_id else null end) AS 'Macbook Pro',
+ count(distinct case when device IN ('mackbook air') then user_id else null end) AS 'Macbook Air',
+ count(distinct case when device IN ('windows surface') then user_id else null end) AS 'Windows Surface',
+ count(distinct case when device IN ('samsung galaxy s4') then user_id else null end) AS 'Samsung Galaxy S4',
+ count(distinct case when device IN ('samsung galaxy tablet') then user_id else null end) AS 'Samsung Galaxy Tablet',
+ count(distinct case when device IN ('samsung galaxy note') then user_id else null end) AS 'Samsung Galaxy Note',
+ count(distinct case when device IN ('lenovo thinkpad') then user_id else null end) AS 'Lenovo Thinkpad',
+ count(distinct case when device IN ('acer inspire notebook') then user_id else null end) AS 'Acer Inspire Notebook',
+ count(distinct case when device IN ('asus chromebook') then user_id else null end) AS 'Asus Chromebook',
+ count(distinct case when device IN ('nexus 7') then user_id else null end) AS 'Nexus 7',
+ count(distinct case when device IN ('nexus 5') then user_id else null end) AS 'Nexus 5',
+ count(distinct case when device IN ('nexus 10') then user_id else null end) AS 'Nexus 10',
+ count(distinct case when device IN ('nokia lumia 365') then user_id else null end) AS 'Nokia Lumia 365',
+ count(distinct case when device IN ('htc one') then user_id else null end) AS 'Htc one',
+ count(distinct case when device IN ('amazon fire phone') then user_id else null end) AS 'Amazon Fire Phone'
+ from 
+  event_emails
+where event_type = 'engagement'
+group by week_num
+order by week_num;
