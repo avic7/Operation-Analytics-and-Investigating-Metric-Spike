@@ -1,74 +1,100 @@
-# Operation-Analytics-and-Investigating-Metric-Spike
+# Operation Analytics and Investigating Metric Spike
 
-The project operation analytics and investigating metric spike is analysis done for the complete end to end operations of a company. With the help of this, the company then finds the areas on which it must improve upon. The main objective of this project is to help the operations team and provide them accurate answers from the database using sql and various other techniques .
+## Overview
+This project performs **end-to-end operational analytics** for a company to identify key areas for improvement. By querying and analyzing operational metrics using SQL, the project helps the **operations team** and **investors** make data-driven decisions quickly and accurately.
 
-Case Study 1: Job Data Analysis
-We will be working with a table named job_data with the following columns:
-a)job_id: Unique identifier of jobs
-b)actor_id: Unique identifier of actor
-c)event: The type of event (decision/skip/transfer).
-d)language: The Language of the content
-e)time_spent: Time spent to review the job in seconds.
-f)org: The Organization of the actor
-g)ds: The date in the format yyyy/mm/dd (stored as text).
+The main objective is to extract insights from a relational database, investigate anomalies like **metric spikes**, and guide operational strategy.
 
-Tasks:
-1.Jobs Reviewed Over Time:
-Objective: Calculate the number of jobs reviewed per hour for each day in November 2020.
-Task: Write an SQL query to calculate the number of jobs reviewed per hour for each day in November 2020.
 
-2.Throughput Analysis:
-Objective: Calculate the 7-day rolling average of throughput (number of events per second).
-Task: Write an SQL query to calculate the 7-day rolling average of throughput. Additionally, explain whether you prefer using the daily metric or the 7-day rolling average for throughput, and why.
+## Case Studies
 
-3.Language Share Analysis:
-Objective: Calculate the percentage share of each language in the last 30 days.
-Task: Write an SQL query to calculate the percentage share of each language over the last 30 days.
+### Case Study 1: Job Data Analysis
+Dataset: `job_data` table with columns:
+- `job_id`: Unique identifier of jobs
+- `actor_id`: Unique identifier of actors
+- `event`: Type of event (decision/skip/transfer)
+- `language`: Language of the content
+- `time_spent`: Time spent reviewing the job (seconds)
+- `org`: Organization of the actor
+- `ds`: Date in `yyyy/mm/dd` format
 
-4.Duplicate Rows Detection:
-Objective: Identify duplicate rows in the data.
-Task: Write an SQL query to display duplicate rows from the job_data table.
+#### Tasks:
+1. **Jobs Reviewed Over Time**
+   - Objective: Calculate the number of jobs reviewed per hour for each day in November 2020.
+   - Task: Write SQL query to extract jobs reviewed per hour.
 
-Case Study 2: Investigating Metric Spike
-You will be working with three tables:
-a)users: Contains one row per user, with descriptive information about that user’s account.
-b)events: Contains one row per event, where an event is an action that a user has taken (e.g., login, messaging, search).
-c)email_events: Contains events specific to the sending of emails.
+2. **Throughput Analysis**
+   - Objective: Calculate the 7-day rolling average of throughput (number of events per second).
+   - Task: SQL query for rolling average throughput + recommendation on daily vs rolling average usage.
 
-Task
-1.Weekly User Engagement:
-Objective: Measure the activeness of users on a weekly basis.
-Task: Write an SQL query to calculate the weekly user engagement.
+3. **Language Share Analysis**
+   - Objective: Calculate the percentage share of each language over the last 30 days.
+   - Task: SQL query to determine language distribution.
 
-2.User Growth Analysis:
-Objective: Analyze the growth of users over time for a product.
-Task: Write an SQL query to calculate the user growth for the product.
+4. **Duplicate Rows Detection**
+   - Objective: Identify and display duplicate rows.
+   - Task: SQL query to find duplicate records in `job_data`.
 
-3.Weekly Retention Analysis:
-Objective: Analyze the retention of users on a weekly basis after signing up for a product.
-Task: Write an SQL query to calculate the weekly retention of users based on their sign-up cohort.
 
-4.Weekly Engagement Per Device:
-Objective: Measure the activeness of users on a weekly basis per device.
-Task: Write an SQL query to calculate the weekly engagement per device.
+### Case Study 2: Investigating Metric Spike
+Datasets:
+- `users`: Descriptive information for each user account.
+- `events`: Records of user actions (e.g., login, messaging, search).
+- `email_events`: Records related to email interactions.
 
-5.Email Engagement Analysis:
-Objective: Analyze how users are engaging with the email service.
-Task: Write an SQL query to calculate the email engagement metrics.
+#### Tasks:
+1. **Weekly User Engagement**
+   - Objective: Measure user activeness on a weekly basis.
+   - Task: SQL query for weekly user engagement.
 
-Approach :
-The main approach towards this project to help and assess the ops team and investors with the
-insights they need is by first loading the database performing various sql queries to get the exact
-insights the team needs quickly.
-Tech used : The main software used during the project is MySql Workbench 8.0 CE
+2. **User Growth Analysis**
+   - Objective: Analyze user growth over time.
+   - Task: SQL query for calculating growth trends.
 
-Requirements
-1. To run the SQL queries and reproduce the insights in this project, you'll need:
-2. An SQL database management system (DBMS) such as MySQL, PostgreSQL, or SQLite.
-3. Access to the provided dataset.
-4. A basic understanding of SQL query syntax and functions.
+3. **Weekly Retention Analysis**
+   - Objective: Measure weekly retention based on sign-up cohorts.
+   - Task: SQL query for cohort-based retention analysis.
 
-Contributing:
-Contributions to this project are welcome! If you find issues, have suggestions, or want to add new analytical tasks, feel free to submit pull requests.
+4. **Weekly Engagement Per Device**
+   - Objective: Track user engagement per device weekly.
+   - Task: SQL query for engagement split by device type.
 
-This project intends to deliver significant insights that help drive data-driven decision-making and enhance many elements of the organisation by doing in-depth analyses and investigations on operational indicators using SQL.
+5. **Email Engagement Analysis**
+   - Objective: Analyze user engagement with email services.
+   - Task: SQL query to calculate email engagement metrics.
+
+
+
+## Approach
+- Load operational datasets into an SQL database.
+- Write efficient SQL queries to uncover operational insights.
+- Investigate anomalies (e.g., metric spikes) and recommend actions.
+- Focus on enabling the operations team and stakeholders with actionable insights.
+
+
+
+## Tech Stack
+- **MySQL Workbench 8.0 CE** (Primary Tool)
+- SQL (Structured Query Language)
+
+
+## Requirements
+To reproduce the analysis:
+
+- SQL database management system (e.g., **MySQL**, **PostgreSQL**, **SQLite**)
+- Access to the provided datasets
+- Basic to intermediate knowledge of SQL syntax and aggregate functions
+
+
+## How to Run
+
+1. Load the datasets (`job_data`, `users`, `events`, `email_events`) into your DBMS.
+2. Run the provided SQL queries sequentially in **MySQL Workbench** or your preferred SQL editor.
+3. Analyze query results for insights.
+
+
+## ontributing
+Contributions are welcome! Feel free to:
+- Open issues if you find bugs.
+- Suggest new analytical tasks.
+- Submit pull requests to expand the project.
